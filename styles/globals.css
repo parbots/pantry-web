@@ -52,12 +52,20 @@
 
 :root {
     --color: black;
-    --highlight: white;
-    --background: lightgray;
+    --highlight: lightgray;
+    --background: white;
 
-    --panel-color: black;
-    --panel-highlight: lightgray;
-    --panel-background: white;
+    --layout-color: black;
+    --layout-highlight: white;
+    --layout-background: lightgray;
+
+    --sidebar-color: var(--layout-color);
+    --sidebar-highlight: var(--layout-highlight);
+    --sidebar-background: var(--layout-background);
+
+    --panel-color: var(--color);
+    --panel-highlight: var(--highlight);
+    --panel-background: var(--background);
 }
 
 *,

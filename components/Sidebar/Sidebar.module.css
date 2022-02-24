@@ -7,6 +7,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    color: var(--sidebar-color);
+    background-color: var(--sidebar-background);
 }
 
 .linkList {
@@ -33,7 +36,7 @@
 }
 
 .link:hover {
-    background-color: var(--highlight);
+    background-color: var(--sidebar-highlight);
 }
 
 .copyright {

@@ -3,6 +3,9 @@
     min-height: 100vh;
 
     display: flex;
+
+    color: var(--layout-color);
+    background-color: var(--layout-background);
 }
 
 .content {
