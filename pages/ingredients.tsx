@@ -2,16 +2,16 @@ import styles from 'styles/IngredientsPage.module.css';
 
 import { NextPage } from 'next';
 
-import Sidebar from 'components/Sidebar';
+import AppLayout from 'layouts/AppLayout';
+import Panel from '../components/Panel/Panel';
 
 const IngredientsPage: NextPage = () => {
     return (
-        <div className={styles.page}>
-            <Sidebar />
-            <main className={styles.mainContainer}>
+        <AppLayout>
+            <Panel>
                 <h1>Ingredients</h1>
-            </main>
-        </div>
+            </Panel>
+        </AppLayout>
     );
 };
 

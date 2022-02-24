@@ -1,8 +1,11 @@
 .page {
+    min-width: 100vw;
+    min-height: 100vh;
+
     display: flex;
 }
 
-.mainContainer {
+.content {
     flex: 1;
 
     min-height: 100vh;
@@ -10,6 +13,4 @@
     padding: 0.5rem;
 
     display: flex;
-    justify-content: center;
-    align-items: center;
 }

@@ -1,13 +1,10 @@
-.page {
-    display: flex;
-}
-
-.mainContainer {
+.dashboard {
     flex: 1;
-
-    min-height: 100vh;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    border: solid 0.25rem black;
+    border-radius: 1rem;
 }

@@ -2,16 +2,16 @@ import styles from 'styles/DashboardPage.module.css';
 
 import type { NextPage } from 'next';
 
-import Sidebar from 'components/Sidebar';
+import AppLayout from 'layouts/AppLayout';
+import Panel from 'components/Panel';
 
 const DashboardPage: NextPage = () => {
     return (
-        <div className={styles.page}>
-            <Sidebar />
-            <main className={styles.mainContainer}>
+        <AppLayout>
+            <Panel>
                 <h1>Dashboard</h1>
-            </main>
-        </div>
+            </Panel>
+        </AppLayout>
     );
 };
 
