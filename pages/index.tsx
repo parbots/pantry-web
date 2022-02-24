@@ -2,6 +2,7 @@ import styles from 'styles/HomePage.module.css';
 
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 
 const HomePage: NextPage = () => {
     return (
@@ -14,7 +15,11 @@ const HomePage: NextPage = () => {
                 />
             </Head>
 
-            <h1>Pantry</h1>
+            <h2>
+                <Link href='/dashboard'>
+                    <a>Pantry</a>
+                </Link>
+            </h2>
         </div>
     );
 };

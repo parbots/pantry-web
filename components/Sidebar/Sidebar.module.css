@@ -33,7 +33,7 @@
 }
 
 .link:hover {
-    background-color: lightgray;
+    background-color: var(--highlight);
 }
 
 .copyright {

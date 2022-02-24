@@ -26,7 +26,11 @@ const Sidebar = () => {
 
     return (
         <header className={styles.sidebar}>
-            <h2 className={styles.title}>Pantry</h2>
+            <h2 className={styles.title}>
+                <Link href='/'>
+                    <a>Pantry</a>
+                </Link>
+            </h2>
             <ul className={styles.linkList}>{linkItems}</ul>
             <p className={styles.copyright}>© Parker Botsford</p>
         </header>
