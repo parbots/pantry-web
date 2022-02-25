@@ -1,12 +1,11 @@
 .panel {
     flex: 1;
 
-    padding: 0.5rem;
+    padding: 1rem;
 
     display: flex;
     flex-direction: column;
 
-    border: solid 0.125rem black;
     border-radius: 1rem;
 
     color: var(--panel-color);

@@ -28,7 +28,7 @@ const Sidebar = () => {
         <header className={styles.sidebar}>
             <h2 className={styles.title}>
                 <Link href='/'>
-                    <a>Pantry</a>
+                    <a className={styles.titleLink}>Pantry</a>
                 </Link>
             </h2>
             <ul className={styles.linkList}>{linkItems}</ul>
