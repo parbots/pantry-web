@@ -1,0 +1,51 @@
+/* Import Inter Font */
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter/Inter-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter/Inter-Bold.ttf') format('truetype');
+    font-style: normal;
+    font-weight: bold;
+    font-display: swap;
+}
+
+/* Import Source Code Pro Font */
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('/fonts/SourceCodePro/SourceCodePro-Regular.ttf')
+        format('truetype');
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('/fonts/SourceCodePro/SourceCodePro-Italic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('/fonts/SourceCodePro/SourceCodePro-Bold.ttf') format('truetype');
+    font-style: normal;
+    font-weight: bold;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('/fonts/SourceCodePro/SourceCodePro-BoldItalic.ttf')
+        format('truetype');
+    font-style: italic;
+    font-weight: bold;
+    font-display: swap;
+}

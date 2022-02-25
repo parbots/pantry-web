@@ -1,15 +1,19 @@
 import { Html, Head, Main, NextScript } from 'next/document';
 
-import { preloadFont } from '../utils/fonts';
+import { preloadFonts } from '../utils/fonts';
 
-export default function Document() {
+const preloadFontLinks = preloadFonts(['Inter'], ['Regular', 'Bold']);
+
+const Document = () => {
     return (
         <Html>
-            <Head>{preloadFont('Inter', ['Regular', 'Bold'])}</Head>
+            <Head>{preloadFontLinks}</Head>
             <body>
                 <Main />
                 <NextScript />
             </body>
         </Html>
     );
-}
+};
+
+export default Document;
