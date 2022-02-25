@@ -16,7 +16,7 @@ const HomePage: NextPage = () => {
             </Head>
 
             <h2>
-                <Link href='/dashboard'>
+                <Link href='/shelves'>
                     <a>Pantry</a>
                 </Link>
             </h2>
