@@ -5,12 +5,8 @@ import Link from 'next/link';
 const Sidebar = () => {
     const links = [
         {
-            name: 'Dashboard',
-            href: '/dashboard',
-        },
-        {
-            name: 'Ingredients',
-            href: '/ingredients',
+            name: 'Shelves',
+            href: '/shelves',
         },
     ];
 

@@ -3,7 +3,7 @@ import styles from 'styles/IngredientsPage.module.css';
 import { NextPage } from 'next';
 
 import AppLayout from 'layouts/AppLayout';
-import Panel from '../components/Panel/Panel';
+import Panel from 'components/Panel';
 
 import { useIngredients } from 'hooks/ingredients';
 

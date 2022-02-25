@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import type { Ingredient } from 'types/ingredient';
+import type { Ingredient } from 'types/pantry';
 
 import { v4 as uuid } from 'uuid';
 
@@ -12,8 +12,8 @@ export const useIngredients = (
     );
 
     // Add an ingredient
-    const addIngredient = (ingredient: Ingredient) => {
-        setIngredients([...ingredients, ingredient]);
+    const addIngredient = (newIngredient: Ingredient) => {
+        setIngredients([...ingredients, newIngredient]);
     };
 
     // TODO: Maybe check if name and snippet already exist
