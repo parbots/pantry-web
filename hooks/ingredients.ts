@@ -5,19 +5,20 @@ import type { Ingredient } from 'types/pantry';
 import { v4 as uuid } from 'uuid';
 
 export const useIngredients = (
-    initialIngredients?: Ingredient[]
+    initialIngredients: Ingredient[]
 ): [Ingredient[], Function, Function] => {
-    const [ingredients, setIngredients] = useState<Ingredient[]>(
-        initialIngredients || []
-    );
+    const [ingredients, setIngredients] =
+        useState<Ingredient[]>(initialIngredients);
 
     // Add an ingredient
     const addIngredient = (newIngredient: Ingredient) => {
         setIngredients([...ingredients, newIngredient]);
+
+        return newIngredient;
     };
 
     // TODO: Maybe check if name and snippet already exist
-    // Create a new ingredient and it to state
+    // Create a new ingredient and add it to state
     const createIngredient = (
         name: Ingredient['name'],
         snippet: Ingredient['snippet']
@@ -38,15 +39,15 @@ export const useIngredients = (
 
     // TODO: Maybe add checking if ingredient exists
     // Remove an ingredient from state
-    const removeIngredient = (ingredientToRemove: Ingredient): Ingredient => {
+    const removeIngredient = (removedIngredient: Ingredient): Ingredient => {
         setIngredients(
             ingredients.filter((ingredient) => {
-                return ingredient !== ingredientToRemove;
+                return ingredient !== removedIngredient;
             })
         );
 
         // Return removed ingredient
-        return ingredientToRemove;
+        return removedIngredient;
     };
 
     return [ingredients, createIngredient, removeIngredient];
