@@ -7,5 +7,5 @@ export type Ingredient = {
 export type Shelf = {
     id: string;
     name: string;
-    ingredients: Ingredient[];
+    ingredients: [Ingredient[], Function, Function];
 };

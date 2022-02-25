@@ -22,7 +22,7 @@ export const useShelves = (
         return addShelf({
             id: uuid(),
             name: name,
-            ingredients: [], // TODO: Implement this
+            ingredients: ingredients,
         });
     };
 
