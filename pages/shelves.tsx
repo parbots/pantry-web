@@ -1,3 +1,5 @@
+import styles from 'styles/ShelvesPage.module.css';
+
 import type { NextPage } from 'next';
 
 import AppLayout from 'layouts/AppLayout';
