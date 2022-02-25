@@ -1,17 +1,15 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { useState } from 'react';
 
 import type { Ingredient } from 'types/ingredient';
 
 import { v4 as uuid } from 'uuid';
 
-const IngredientContext = createContext({});
-
-type IngredientProviderProps = {
-    children: ReactNode;
-};
-
-export const IngredientProvider = ({ children }: IngredientProviderProps) => {
-    const [ingredients, setIngredients] = useState<Ingredient[]>([]);
+export const useIngredients = (
+    initialIngredients?: Ingredient[]
+): [Ingredient[], Function, Function] => {
+    const [ingredients, setIngredients] = useState<Ingredient[]>(
+        initialIngredients || []
+    );
 
     // Add an ingredient
     const addIngredient = (ingredient: Ingredient) => {
@@ -51,15 +49,5 @@ export const IngredientProvider = ({ children }: IngredientProviderProps) => {
         return ingredientToRemove;
     };
 
-    return (
-        <IngredientContext.Provider
-            value={{ ingredients, addIngredient, removeIngredient }}
-        >
-            {children}
-        </IngredientContext.Provider>
-    );
-};
-
-export const useIngredients = () => {
-    return useContext(IngredientContext);
+    return [ingredients, createIngredient, removeIngredient];
 };
