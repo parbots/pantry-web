@@ -25,7 +25,11 @@ const ShelfList = ({
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     const handleAddIngredient = () => {
-        addIngredient('Test Ingredient', 'Descriptio', 'Snippet of code.');
+        addIngredient(
+            'Ingredient Name',
+            'Description of Ingredient',
+            'Ingredient Snippet of Code.'
+        );
     };
 
     const handleRemoveSelf = () => {
