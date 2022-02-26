@@ -8,6 +8,4 @@ export type Shelf = {
     id: string;
     name: string;
     ingredients: Ingredient[];
-    addIngredient: Function;
-    removeIngredient: Function;
 };

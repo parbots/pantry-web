@@ -1,51 +1,51 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import type { Ingredient, Shelf } from 'types/pantry';
 
 import { v4 as uuid } from 'uuid';
 
-export const useShelf = (shelfName: string): [Shelf, Function] => {
-    const [id] = useState(uuid());
-    const [name, setName] = useState(shelfName);
-    const [ingredients, setIngredients] = useState<Ingredient[]>([]);
+export const useShelves = (initialShelves: Shelf[]): [Shelf[], {}] => {
+    const [shelves, setShelves] = useState<Shelf[]>(initialShelves);
 
-    const createIngredient = (
+    const createShelf = (
         newName: string,
-        newSnippet: string
-    ): Ingredient => {
+        newIngredients: Ingredient[]
+    ): Shelf => {
         return {
             id: uuid(),
             name: newName,
-            snippet: newSnippet,
+            ingredients: newIngredients,
         };
     };
 
-    const addIngredient = (newName: string, newSnippet: string): Ingredient => {
-        const newIngredient = createIngredient(newName, newSnippet);
-
-        setIngredients([...ingredients, newIngredient]);
-
-        return newIngredient;
+    const addShelf = (addedShelf: Shelf): Shelf => {
+        setShelves([...shelves, addedShelf]);
+        return addedShelf;
     };
 
-    const removeIngredient = (removedIngredient: Ingredient): Ingredient => {
-        setIngredients(
-            ingredients.filter((ingredient) => {
-                return ingredient !== removedIngredient;
+    const addNewShelf = (
+        newName: string,
+        newIngredients: Ingredient[]
+    ): Shelf => {
+        return addShelf(createShelf(newName, newIngredients));
+    };
+
+    const removeShelf = (removedShelf: Shelf): Shelf => {
+        setShelves(
+            shelves.filter((shelf) => {
+                return shelf !== removedShelf;
             })
         );
-
-        return removedIngredient;
+        return removedShelf;
     };
 
     return [
+        shelves,
         {
-            id: id,
-            name: name,
-            ingredients: ingredients,
-            addIngredient: addIngredient,
-            removeIngredient: removeIngredient,
+            createShelf,
+            addShelf,
+            addNewShelf,
+            removeShelf,
         },
-        setName,
     ];
 };
