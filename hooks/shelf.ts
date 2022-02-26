@@ -1,10 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import type { Ingredient, Shelf } from 'types/pantry';
 
 import { v4 as uuid } from 'uuid';
 
-export const useShelves = (initialShelves: Shelf[]): [Shelf[], {}, {}] => {
+type ShelfHook = (
+    initialShelves: Shelf[]
+) => [
+    shelves: Shelf[],
+    createShelf: (language: string, ingredients: Ingredient[]) => Shelf,
+    removeShelf: (shelfToRemove: Shelf) => Shelf,
+    createIngredient: (
+        name: string,
+        description: string,
+        snippet: string,
+        targetShelf: Shelf
+    ) => Ingredient,
+    removeIngredient: (
+        ingredientToRemove: Ingredient,
+        targetShelf: Shelf
+    ) => Ingredient
+];
+
+export const useShelves: ShelfHook = (initialShelves) => {
     const [shelves, setShelves] = useState<Shelf[]>(initialShelves);
 
     const createShelf = (
@@ -88,9 +106,11 @@ export const useShelves = (initialShelves: Shelf[]): [Shelf[], {}, {}] => {
         setShelves(
             shelves.map((shelf) => {
                 if (shelf === targetShelf) {
-                    shelf.ingredients.filter((ingredient) => {
-                        return ingredient !== ingredientToRemove;
-                    });
+                    shelf.ingredients = shelf.ingredients.filter(
+                        (ingredient) => {
+                            return ingredient !== ingredientToRemove;
+                        }
+                    );
                 }
 
                 return shelf;
@@ -102,17 +122,9 @@ export const useShelves = (initialShelves: Shelf[]): [Shelf[], {}, {}] => {
 
     return [
         shelves,
-        {
-            createShelf,
-            addShelf,
-            addNewShelf,
-            removeShelf,
-        },
-        {
-            createIngredient,
-            addIngredient,
-            addNewIngredient,
-            removeIngredient,
-        },
+        addNewShelf,
+        removeShelf,
+        addNewIngredient,
+        removeIngredient,
     ];
 };

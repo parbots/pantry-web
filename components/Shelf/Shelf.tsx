@@ -1,14 +1,52 @@
+import styles from './Shelf.module.css';
 
-import styles from './Shelf.module.css'
-import React from 'react';
+import type { Ingredient } from 'types/pantry';
 
-const Shelf = () => {
+import IngredientItem from 'components/Ingredient';
+
+type ShelfListProps = {
+    language: string;
+    removeSelf: Function;
+    ingredients: Ingredient[];
+    addIngredient: Function;
+    removeIngredient: Function;
+};
+
+const ShelfList = ({
+    language,
+    removeSelf,
+    ingredients,
+    addIngredient,
+    removeIngredient,
+}: ShelfListProps) => {
+    const handleAddIngredient = () => {
+        addIngredient('Test Ingredient', 'Descriptio', 'Snippet of code.');
+    };
+
+    const ingredientItems = ingredients.map((ingredient) => {
+        return (
+            <IngredientItem
+                key={ingredient.id}
+                name={ingredient.name}
+                description={ingredient.description}
+                snippet={ingredient.snippet}
+                removeSelf={() => removeIngredient(ingredient)}
+            />
+        );
+    });
+
     return (
-        <div>
-            <h1>Shelf</h1>
-        </div>
+        <section>
+            <section>
+                <h2>{language}</h2>
+                <button onClick={() => handleAddIngredient()}>
+                    Add Ingredient
+                </button>
+                <button onClick={() => removeSelf()}>Delete</button>
+            </section>
+            <ul>{ingredientItems}</ul>
+        </section>
     );
 };
 
-export default Shelf;
-
+export default ShelfList;

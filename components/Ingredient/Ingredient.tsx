@@ -1,14 +1,26 @@
+import styles from './Ingredient.module.css';
 
-import styles from './Ingredient.module.css'
-import React from 'react';
+type IngredientProps = {
+    name: string;
+    description: string;
+    snippet: string;
+    removeSelf: Function;
+};
 
-const Ingredient = () => {
+const IngredientItem = ({
+    name,
+    description,
+    snippet,
+    removeSelf,
+}: IngredientProps) => {
     return (
-        <div>
-            <h1>Ingredient</h1>
-        </div>
+        <li>
+            <h3>{name}</h3>
+            <p>{description}</p>
+            <p>{snippet}</p>
+            <button onClick={() => removeSelf()}>Delete</button>
+        </li>
     );
 };
 
-export default Ingredient;
-
+export default IngredientItem;
