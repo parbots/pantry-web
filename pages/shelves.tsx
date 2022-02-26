@@ -39,15 +39,16 @@ const ShelvesPage: NextPage = () => {
     return (
         <AppLayout>
             <Panel>
-                <section>
-                    <h1>Shelves</h1>
-                    <button onClick={() => handleCreateShelf()}>
+                <header className={styles.header}>
+                    <h1 className={styles.title}>Shelves</h1>
+                    <button
+                        onClick={() => handleCreateShelf()}
+                        className={styles.createButton}
+                    >
                         Create Shelf
                     </button>
-                </section>
-                <section>
-                    <ul>{shelfListItems}</ul>
-                </section>
+                </header>
+                <ul className={styles.shelvesList}>{shelfListItems}</ul>
             </Panel>
         </AppLayout>
     );

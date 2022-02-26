@@ -14,11 +14,18 @@ const IngredientItem = ({
     removeSelf,
 }: IngredientProps) => {
     return (
-        <li>
-            <h3>{name}</h3>
-            <p>{description}</p>
-            <p>{snippet}</p>
-            <button onClick={() => removeSelf()}>Delete</button>
+        <li className={styles.ingredient}>
+            <header className={styles.header}>
+                <h3 className={styles.title}>{name}</h3>
+                <button
+                    onClick={() => removeSelf()}
+                    className={styles.deleteButton}
+                >
+                    Delete
+                </button>
+            </header>
+            <p className={styles.description}>{description}</p>
+            <p className={styles.snippet}>{snippet}</p>
         </li>
     );
 };

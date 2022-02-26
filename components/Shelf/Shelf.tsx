@@ -36,15 +36,23 @@ const ShelfList = ({
     });
 
     return (
-        <section>
-            <section>
-                <h2>{language}</h2>
-                <button onClick={() => handleAddIngredient()}>
+        <section className={styles.shelf}>
+            <header className={styles.header}>
+                <h2 className={styles.title}>{language}</h2>
+                <button
+                    onClick={() => handleAddIngredient()}
+                    className={styles.addButton}
+                >
                     Add Ingredient
                 </button>
-                <button onClick={() => removeSelf()}>Delete</button>
-            </section>
-            <ul>{ingredientItems}</ul>
+                <button
+                    onClick={() => removeSelf()}
+                    className={styles.deleteButton}
+                >
+                    Delete
+                </button>
+            </header>
+            <ul className={styles.ingredientsList}>{ingredientItems}</ul>
         </section>
     );
 };
