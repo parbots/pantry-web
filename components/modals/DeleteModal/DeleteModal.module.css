@@ -1,0 +1,73 @@
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+    width: 20vw;
+    height: 20vh;
+
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 1rem;
+
+    background-color: white;
+}
+
+.header {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonSection {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cancelButton {
+    padding: 0.5rem;
+
+    cursor: pointer;
+
+    border: solid 0.2rem lightgray;
+    border-radius: 0.5rem;
+
+    background-color: white;
+}
+
+.cancelButton:hover {
+    background-color: lightgray;
+}
+
+.deleteButton {
+    padding: 0.5rem;
+
+    cursor: pointer;
+
+    border: solid 0.2rem red;
+    border-radius: 0.5rem;
+
+    background-color: white;
+}
+
+.deleteButton:hover {
+    background-color: red;
+}

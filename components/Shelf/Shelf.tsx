@@ -1,8 +1,11 @@
 import styles from './Shelf.module.css';
 
+import { useState } from 'react';
+
 import type { Ingredient } from 'types/pantry';
 
 import IngredientItem from 'components/Ingredient';
+import DeleteShelfModal from 'components/modals/DeleteModal';
 
 type ShelfListProps = {
     language: string;
@@ -19,8 +22,14 @@ const ShelfList = ({
     addIngredient,
     removeIngredient,
 }: ShelfListProps) => {
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+
     const handleAddIngredient = () => {
         addIngredient('Test Ingredient', 'Descriptio', 'Snippet of code.');
+    };
+
+    const handleRemoveSelf = () => {
+        setShowDeleteModal(true);
     };
 
     const ingredientItems = ingredients.map((ingredient) => {
@@ -46,13 +55,19 @@ const ShelfList = ({
                     Add Ingredient
                 </button>
                 <button
-                    onClick={() => removeSelf()}
+                    onClick={() => handleRemoveSelf()}
                     className={styles.deleteButton}
                 >
                     Delete
                 </button>
             </header>
             <ul className={styles.ingredientsList}>{ingredientItems}</ul>
+            {showDeleteModal && (
+                <DeleteShelfModal
+                    cancel={() => setShowDeleteModal(false)}
+                    confirm={removeSelf}
+                />
+            )}
         </section>
     );
 };
