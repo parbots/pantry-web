@@ -2,7 +2,7 @@ import styles from 'styles/ShelvesPage.module.css';
 
 import type { NextPage } from 'next';
 
-import type { Ingredient, Shelf } from 'types/pantry';
+import type { Ingredient } from 'types/pantry';
 import { useShelves } from 'hooks/shelf';
 
 import AppLayout from 'layouts/AppLayout';
