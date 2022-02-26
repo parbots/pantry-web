@@ -1,1 +1,1 @@
-export { default } from './DeleteShelfModal'
+export { default } from './DeleteModal';

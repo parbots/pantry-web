@@ -1,5 +1,9 @@
 import styles from './Ingredient.module.css';
 
+import { useState } from 'react';
+
+import DeleteModal from 'components/modals/DeleteModal';
+
 type IngredientProps = {
     name: string;
     description: string;
@@ -13,12 +17,14 @@ const IngredientItem = ({
     snippet,
     removeSelf,
 }: IngredientProps) => {
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+
     return (
         <li className={styles.ingredient}>
             <header className={styles.header}>
                 <h3 className={styles.title}>{name}</h3>
                 <button
-                    onClick={() => removeSelf()}
+                    onClick={() => setShowDeleteModal(true)}
                     className={styles.deleteButton}
                 >
                     Delete
@@ -26,6 +32,12 @@ const IngredientItem = ({
             </header>
             <p className={styles.description}>{description}</p>
             <p className={styles.snippet}>{snippet}</p>
+            {showDeleteModal && (
+                <DeleteModal
+                    cancel={() => setShowDeleteModal(false)}
+                    confirm={() => removeSelf()}
+                />
+            )}
         </li>
     );
 };
