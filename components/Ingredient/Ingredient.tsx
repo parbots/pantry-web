@@ -17,27 +17,18 @@ const IngredientItem = ({
     snippet,
     removeSelf,
 }: IngredientProps) => {
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-
     return (
         <li className={styles.ingredient}>
             <header className={styles.header}>
                 <h3 className={styles.title}>{name}</h3>
-                <button
-                    onClick={() => setShowDeleteModal(true)}
-                    className={styles.deleteButton}
-                >
-                    Delete
-                </button>
+                <DeleteModal
+                    title='Delete Ingredient'
+                    description={`Are you sure you want to delete ${name}?`}
+                    confirm={() => removeSelf()}
+                />
             </header>
             <p className={styles.description}>{description}</p>
             <p className={styles.snippet}>{snippet}</p>
-            {showDeleteModal && (
-                <DeleteModal
-                    cancel={() => setShowDeleteModal(false)}
-                    confirm={() => removeSelf()}
-                />
-            )}
         </li>
     );
 };

@@ -71,7 +71,7 @@
     border: solid 0.2rem lightgray;
     border-radius: 0.5rem;
 
-    background-color: white;
+    background: none;
 }
 
 .cancelButton:hover {
@@ -86,7 +86,7 @@
     border: solid 0.2rem red;
     border-radius: 0.5rem;
 
-    background-color: white;
+    background: none;
 }
 
 .deleteButton:hover {
