@@ -3,6 +3,56 @@
 
     display: flex;
     flex-direction: column;
+}
+
+.header {
+    height: 10vh;
+
+    padding: 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main {
+    min-height: 85vh;
+}
+
+.hero {
+    min-height: 90vh;
+
+    display: flex;
+}
+
+.heroLeft {
+    flex: 1;
+
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.heroTitle {
+    text-align: center;
+
+    font-size: 3rem;
+}
+
+.heroRight {
+    flex: 1;
+
+    padding: 1rem;
+}
+
+.footer {
+    height: 5vh;
+
+    display: flex;
     justify-content: center;
     align-items: center;
 }

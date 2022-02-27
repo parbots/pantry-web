@@ -15,11 +15,29 @@ const HomePage: NextPage = () => {
                 />
             </Head>
 
-            <h2>
-                <Link href='/shelves'>
-                    <a>Pantry</a>
-                </Link>
-            </h2>
+            <header className={styles.header}>
+                <h2 className={styles.title}>Pantry</h2>
+                <nav className={styles.nav}>
+                    <Link href='/pantry'>
+                        <a>View Pantry</a>
+                    </Link>
+                </nav>
+            </header>
+            <main className={styles.main}>
+                <section className={styles.hero}>
+                    <section className={styles.heroLeft}>
+                        <h1 className={styles.heroTitle}>
+                            {`All your ingredients,`}
+                            <br />
+                            {`in one place.`}
+                        </h1>
+                    </section>
+                    <section className={styles.heroRight}></section>
+                </section>
+            </main>
+            <footer className={styles.footer}>
+                <p className={styles.copyright}>© Parker Botsford</p>
+            </footer>
         </div>
     );
 };
