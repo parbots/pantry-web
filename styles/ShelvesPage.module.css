@@ -16,7 +16,7 @@
     border: solid 0.2rem lightgreen;
     border-radius: 0.5rem;
 
-    background-color: var(--panel-background);
+    background: none;
 }
 
 .createButton:hover {

@@ -19,26 +19,11 @@
     border: solid 0.2rem lightgreen;
     border-radius: 0.5rem;
 
-    background-color: var(--panel-background);
+    background: none;
 }
 
 .addButton:hover {
     background-color: lightgreen;
-}
-
-.deleteButton {
-    padding: 0.5rem;
-
-    cursor: pointer;
-
-    border: solid 0.2rem red;
-    border-radius: 0.5rem;
-
-    background-color: var(--panel-background);
-}
-
-.deleteButton:hover {
-    background-color: red;
 }
 
 .ingredientsList {
