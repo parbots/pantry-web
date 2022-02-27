@@ -87,36 +87,39 @@ const CreateIngredientModal = ({ create }: CreateIngredientModalProps) => {
                     </header>
 
                     <form onSubmit={handleSubmit} className={styles.form}>
-                        <input
-                            type='text'
-                            placeholder='Name'
-                            ref={nameInputRef}
-                            value={nameInput}
-                            onChange={handleNameChange}
-                            className={styles.nameInput}
-                        />
-                        <input
-                            type='text'
-                            placeholder='Description'
-                            value={descriptionInput}
-                            onChange={handleDescriptionChange}
-                            className={styles.descriptionInput}
-                        />
-                        <input
-                            type='text'
-                            placeholder='Language'
-                            value={languageInput}
-                            onChange={handleLanguageChange}
-                            className={styles.languageInput}
-                        />
-                        <textarea
-                            placeholder='Code Snippet'
-                            value={snippetInput}
-                            onChange={handleSnippetChange}
-                            className={styles.snippetInput}
-                        />
+                        <section className={styles.formLeft}>
+                            <input
+                                type='text'
+                                placeholder='Name'
+                                ref={nameInputRef}
+                                value={nameInput}
+                                onChange={handleNameChange}
+                                className={styles.nameInput}
+                            />
+                            <input
+                                type='text'
+                                placeholder='Description'
+                                value={descriptionInput}
+                                onChange={handleDescriptionChange}
+                                className={styles.descriptionInput}
+                            />
+                        </section>
+                        <section className={styles.formRight}>
+                            <input
+                                type='text'
+                                placeholder='Language'
+                                value={languageInput}
+                                onChange={handleLanguageChange}
+                                className={styles.languageInput}
+                            />
+                            <textarea
+                                placeholder='Code Snippet'
+                                value={snippetInput}
+                                onChange={handleSnippetChange}
+                                className={styles.snippetInput}
+                            />
+                        </section>
                     </form>
-
                     <section className={styles.actionSection}>
                         <AlertDialog.Cancel className={styles.cancelButton}>
                             Cancel
