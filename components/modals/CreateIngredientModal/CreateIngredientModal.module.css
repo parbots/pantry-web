@@ -27,7 +27,7 @@
     margin: auto;
 
     width: 40vw;
-    height: 50vh;
+    height: 60vh;
 
     padding: 1rem;
 
@@ -65,7 +65,13 @@
     padding: 0.5rem;
 }
 
+.languageInput {
+    padding: 0.5rem;
+}
+
 .snippetInput {
+    flex: 1;
+
     padding: 0.5rem;
 }
 

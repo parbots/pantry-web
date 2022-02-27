@@ -1,12 +1,14 @@
 import styles from './Ingredient.module.css';
 
-import { useState } from 'react';
-
 import DeleteModal from 'components/modals/DeleteModal';
+
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { dracula } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
 type IngredientProps = {
     name: string;
     description: string;
+    language: string;
     snippet: string;
     removeSelf: Function;
 };
@@ -14,6 +16,7 @@ type IngredientProps = {
 const IngredientItem = ({
     name,
     description,
+    language,
     snippet,
     removeSelf,
 }: IngredientProps) => {
@@ -28,7 +31,15 @@ const IngredientItem = ({
                 />
             </header>
             <p className={styles.description}>{description}</p>
-            <p className={styles.snippet}>{snippet}</p>
+            <p className={styles.language}>{language}</p>
+            <SyntaxHighlighter
+                language={language}
+                style={dracula}
+                wrapLines
+                className={styles.snippet}
+            >
+                {snippet}
+            </SyntaxHighlighter>
         </li>
     );
 };

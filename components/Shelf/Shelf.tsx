@@ -27,6 +27,7 @@ const ShelfList = ({
                 key={ingredient.id}
                 name={ingredient.name}
                 description={ingredient.description}
+                language={ingredient.language}
                 snippet={ingredient.snippet}
                 removeSelf={() => removeIngredient(ingredient)}
             />

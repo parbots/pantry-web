@@ -11,6 +11,7 @@ type CreateIngredientModalProps = {
 const CreateIngredientModal = ({ create }: CreateIngredientModalProps) => {
     const [nameInput, setNameInput] = useState('');
     const [descriptionInput, setDescriptionInput] = useState('');
+    const [languageInput, setLanguageInput] = useState('');
     const [snippetInput, setSnippetInput] = useState('');
 
     const nameInputRef = useRef<HTMLInputElement>(null);
@@ -28,7 +29,13 @@ const CreateIngredientModal = ({ create }: CreateIngredientModalProps) => {
         setDescriptionInput(event.target.value);
     };
 
-    const handleSnippetChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleLanguageChange = (event: ChangeEvent<HTMLInputElement>) => {
+        event.preventDefault();
+
+        setLanguageInput(event.target.value);
+    };
+
+    const handleSnippetChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
         event.preventDefault();
 
         setSnippetInput(event.target.value);
@@ -55,9 +62,10 @@ const CreateIngredientModal = ({ create }: CreateIngredientModalProps) => {
     };
 
     const handleCreate = () => {
-        create(nameInput, descriptionInput, snippetInput);
+        create(nameInput, descriptionInput, languageInput, snippetInput);
         setNameInput('');
         setDescriptionInput('');
+        setLanguageInput('');
         setSnippetInput('');
     };
 
@@ -96,6 +104,12 @@ const CreateIngredientModal = ({ create }: CreateIngredientModalProps) => {
                         />
                         <input
                             type='text'
+                            placeholder='Language'
+                            value={languageInput}
+                            onChange={handleLanguageChange}
+                            className={styles.languageInput}
+                        />
+                        <textarea
                             placeholder='Code Snippet'
                             value={snippetInput}
                             onChange={handleSnippetChange}

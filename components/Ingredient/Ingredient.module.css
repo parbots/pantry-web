@@ -31,3 +31,7 @@
 .deleteButton:hover {
     background-color: red;
 }
+
+.snippet {
+    border-radius: 0.5rem;
+}
