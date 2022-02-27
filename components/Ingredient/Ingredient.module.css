@@ -17,6 +17,10 @@
     gap: 1rem;
 }
 
+.snippet {
+    border-radius: 1rem;
+}
+
 .deleteButton {
     padding: 0.5rem;
 

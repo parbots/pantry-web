@@ -31,7 +31,11 @@ const IngredientItem = ({
                 </button>
             </header>
             <p className={styles.description}>{description}</p>
-            <p className={styles.snippet}>{snippet}</p>
+            <pre className={styles.snippet}>
+                <code className={styles.snippetCode + ' language-javascript'}>
+                    {snippet}
+                </code>
+            </pre>
             {showDeleteModal && (
                 <DeleteModal
                     cancel={() => setShowDeleteModal(false)}
