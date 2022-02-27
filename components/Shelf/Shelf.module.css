@@ -10,22 +10,6 @@
     gap: 1rem;
 }
 
-.addButton {
-    margin-right: auto;
-    padding: 0.5rem;
-
-    cursor: pointer;
-
-    border: solid 0.2rem lightgreen;
-    border-radius: 0.5rem;
-
-    background: none;
-}
-
-.addButton:hover {
-    background-color: lightgreen;
-}
-
 .ingredientsList {
     display: flex;
     flex-wrap: wrap;

@@ -41,12 +41,7 @@ const ShelfList = ({
         <section className={styles.shelf}>
             <header className={styles.header}>
                 <h2 className={styles.title}>{language}</h2>
-                <button
-                    onClick={() => setShowCreateModal(true)}
-                    className={styles.addButton}
-                >
-                    Add Ingredient
-                </button>
+                <CreateIngredientModal create={addIngredient} />
                 <DeleteModal
                     title='Delete Shelf'
                     description={`Are you sure you want to delete ${language}?`}
@@ -54,12 +49,6 @@ const ShelfList = ({
                 />
             </header>
             <ul className={styles.ingredientsList}>{ingredientItems}</ul>
-            {showCreateModal && (
-                <CreateIngredientModal
-                    create={addIngredient}
-                    hide={() => setShowCreateModal(false)}
-                />
-            )}
         </section>
     );
 };
