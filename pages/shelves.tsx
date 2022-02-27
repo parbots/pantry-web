@@ -2,7 +2,7 @@ import styles from 'styles/ShelvesPage.module.css';
 
 import type { NextPage } from 'next';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import type { Ingredient } from 'types/pantry';
 import { useShelves } from 'hooks/shelf';
@@ -12,13 +12,15 @@ import Panel from 'components/Panel';
 import ShelfList from 'components/Shelf';
 import CreateShelfModal from 'components/modals/CreateShelfModal';
 
-import Prism from 'prismjs';
-
 const ShelvesPage: NextPage = () => {
     const [shelves, createShelf, removeShelf, addIngredient, removeIngredient] =
         useShelves([]);
 
     const [showCreateShelfModal, setShowCreateShelfModal] = useState(false);
+
+    const handleCreateShelf = () => {
+        createShelf('Test Shelf', []);
+    };
 
     const shelfListItems = shelves.map((shelf) => {
         return (
@@ -37,10 +39,6 @@ const ShelvesPage: NextPage = () => {
                 }
             />
         );
-    });
-
-    useEffect(() => {
-        Prism.highlightAll();
     });
 
     return (
