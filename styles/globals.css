@@ -61,9 +61,15 @@ svg {
 
 input,
 button,
+select,
 textarea,
-select {
+code {
     font: inherit;
+}
+
+textarea,
+code {
+    font-family: 'Source Code Pro', monospace;
 }
 
 ul,

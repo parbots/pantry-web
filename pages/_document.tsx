@@ -2,7 +2,10 @@ import { Html, Head, Main, NextScript } from 'next/document';
 
 import { preloadFonts } from '../utils/fonts';
 
-const preloadFontLinks = preloadFonts(['Inter'], ['Regular', 'Bold']);
+const preloadFontLinks = preloadFonts(
+    ['Inter', 'SourceCodePro'],
+    ['Regular', 'Bold']
+);
 
 const Document = () => {
     return (
