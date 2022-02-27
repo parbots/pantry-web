@@ -1,5 +1,5 @@
 import styles from './CreateShelfModal.module.css';
-import { ChangeEvent, useState } from 'react';
+import { useState, useRef, useEffect, ChangeEvent, FormEvent } from 'react';
 
 type CreateShelfModalProps = {
     createShelf: Function;
@@ -8,6 +8,7 @@ type CreateShelfModalProps = {
 
 const CreateShelfModal = ({ createShelf, cancel }: CreateShelfModalProps) => {
     const [languageInput, setLanguageInput] = useState('');
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const handleLanguageChange = (event: ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
@@ -15,10 +16,23 @@ const CreateShelfModal = ({ createShelf, cancel }: CreateShelfModalProps) => {
         setLanguageInput(event.target.value);
     };
 
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        createShelf(languageInput, []);
+        cancel();
+    };
+
     const handleCreate = () => {
         createShelf(languageInput, []);
         cancel();
     };
+
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, []);
 
     return (
         <div className={styles.overlay}>
@@ -26,12 +40,15 @@ const CreateShelfModal = ({ createShelf, cancel }: CreateShelfModalProps) => {
                 <header className={styles.header}>
                     <h3 className={styles.title}>Create New Shelf</h3>
                 </header>
-                <input
-                    type='text'
-                    value={languageInput}
-                    onChange={handleLanguageChange}
-                    className={styles.languageInput}
-                />
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type='text'
+                        value={languageInput}
+                        onChange={handleLanguageChange}
+                        ref={inputRef}
+                        className={styles.languageInput}
+                    />
+                </form>
                 <section className={styles.buttonSection}>
                     <button
                         onClick={() => cancel()}
