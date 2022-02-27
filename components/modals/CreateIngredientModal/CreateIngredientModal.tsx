@@ -1,5 +1,5 @@
 import styles from './CreateIngredientModal.module.css';
-import React from 'react';
+
 import { useState, ChangeEvent } from 'react';
 
 type CreateIngredientModalProps = {
