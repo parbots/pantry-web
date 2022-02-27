@@ -20,14 +20,15 @@ const ShelvesPage: NextPage = () => {
         return (
             <ShelfList
                 key={shelf.id}
-                language={shelf.language}
+                name={shelf.name}
                 removeSelf={() => removeShelf(shelf)}
                 ingredients={shelf.ingredients}
                 addIngredient={(
                     name: string,
                     description: string,
+                    language: string,
                     snippet: string
-                ) => addIngredient(name, description, snippet, shelf)}
+                ) => addIngredient(name, description, language, snippet, shelf)}
                 removeIngredient={(ingredient: Ingredient) =>
                     removeIngredient(ingredient, shelf)
                 }
@@ -41,9 +42,7 @@ const ShelvesPage: NextPage = () => {
                 <header className={styles.header}>
                     <h1 className={styles.title}>Shelves</h1>
                     <CreateShelfModal
-                        confirm={(language: string) =>
-                            createShelf(language, [])
-                        }
+                        confirm={(name: string) => createShelf(name, [])}
                     />
                 </header>
                 <ul className={styles.shelvesList}>{shelfListItems}</ul>

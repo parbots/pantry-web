@@ -8,11 +8,12 @@ type ShelfHook = (
     initialShelves: Shelf[]
 ) => [
     shelves: Shelf[],
-    createShelf: (language: string, ingredients: Ingredient[]) => Shelf,
+    createShelf: (name: string, ingredients: Ingredient[]) => Shelf,
     removeShelf: (shelfToRemove: Shelf) => Shelf,
     createIngredient: (
         name: string,
         description: string,
+        language: string,
         snippet: string,
         targetShelf: Shelf
     ) => Ingredient,
@@ -26,45 +27,47 @@ export const useShelves: ShelfHook = (initialShelves) => {
     const [shelves, setShelves] = useState<Shelf[]>(initialShelves);
 
     const createShelf = (
-        newLanguage: string,
+        newName: string,
         newIngredients: Ingredient[]
     ): Shelf => {
         return {
             id: uuid(),
-            language: newLanguage,
+            name: newName,
             ingredients: newIngredients,
         };
     };
 
-    const addShelf = (addedShelf: Shelf): Shelf => {
-        setShelves([...shelves, addedShelf]);
-        return addedShelf;
+    const addShelf = (shelfToAdd: Shelf): Shelf => {
+        setShelves([...shelves, shelfToAdd]);
+        return shelfToAdd;
     };
 
     const addNewShelf = (
-        newLanguage: string,
+        newName: string,
         newIngredients: Ingredient[]
     ): Shelf => {
-        return addShelf(createShelf(newLanguage, newIngredients));
+        return addShelf(createShelf(newName, newIngredients));
     };
 
-    const removeShelf = (removedShelf: Shelf): Shelf => {
+    const removeShelf = (shelfToRemove: Shelf): Shelf => {
         setShelves(
             shelves.filter((shelf) => {
-                return shelf !== removedShelf;
+                return shelf !== shelfToRemove;
             })
         );
-        return removedShelf;
+        return shelfToRemove;
     };
 
     const createIngredient = (
         newName: string,
         newDescription: string,
+        selectedLanguage: string,
         newSnippet: string
     ): Ingredient => {
         return {
             id: uuid(),
             name: newName,
+            language: selectedLanguage,
             description: newDescription,
             snippet: newSnippet,
         };
@@ -90,11 +93,17 @@ export const useShelves: ShelfHook = (initialShelves) => {
     const addNewIngredient = (
         newName: string,
         newDescription: string,
+        selectedLanguage: string,
         newSnippet: string,
         targetShelf: Shelf
     ): Ingredient => {
         return addIngredient(
-            createIngredient(newName, newDescription, newSnippet),
+            createIngredient(
+                newName,
+                newDescription,
+                selectedLanguage,
+                newSnippet
+            ),
             targetShelf
         );
     };
