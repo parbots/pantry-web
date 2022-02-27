@@ -8,21 +8,6 @@
     font-size: 2rem;
 }
 
-.createButton {
-    padding: 0.5rem;
-
-    cursor: pointer;
-
-    border: solid 0.2rem lightgreen;
-    border-radius: 0.5rem;
-
-    background: none;
-}
-
-.createButton:hover {
-    background-color: lightgreen;
-}
-
 .shelvesList {
     padding: 1rem;
 
