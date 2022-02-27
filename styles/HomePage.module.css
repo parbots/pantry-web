@@ -15,6 +15,30 @@
     align-items: center;
 }
 
+.title {
+    font-size: 2rem;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navLink {
+    padding: 0.5rem;
+
+    border: solid 0.2rem var(--highlight);
+    border-radius: 0.5rem;
+
+    color: var(--color);
+    background-color: var(--highlight);
+}
+
+.navLink:hover {
+    background: none;
+}
+
 .main {
     min-height: 85vh;
 }

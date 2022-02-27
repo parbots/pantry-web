@@ -19,7 +19,7 @@ const HomePage: NextPage = () => {
                 <h2 className={styles.title}>Pantry</h2>
                 <nav className={styles.nav}>
                     <Link href='/pantry'>
-                        <a>View Pantry</a>
+                        <a className={styles.navLink}>View Pantry</a>
                     </Link>
                 </nav>
             </header>
