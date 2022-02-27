@@ -13,12 +13,25 @@
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal {
-    width: 20vw;
-    height: 20vh;
+.content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    margin: auto;
+
+    padding: 1rem;
+
+    width: 40vw;
+    height: 30vh;
 
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 
     border-radius: 1rem;
 
@@ -33,7 +46,15 @@
     align-items: center;
 }
 
-.buttonSection {
+.description {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.actionSection {
     flex: 1;
 
     display: flex;

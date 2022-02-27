@@ -6,7 +6,7 @@ import type { Ingredient } from 'types/pantry';
 
 import IngredientItem from 'components/Ingredient';
 import CreateIngredientModal from 'components/modals/CreateIngredientModal';
-import DeleteShelfModal from 'components/modals/DeleteModal';
+import DeleteModal from 'components/modals/DeleteModal';
 
 type ShelfListProps = {
     language: string;
@@ -24,7 +24,6 @@ const ShelfList = ({
     removeIngredient,
 }: ShelfListProps) => {
     const [showCreateModal, setShowCreateModal] = useState(false);
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     const ingredientItems = ingredients.map((ingredient) => {
         return (
@@ -48,20 +47,13 @@ const ShelfList = ({
                 >
                     Add Ingredient
                 </button>
-                <button
-                    onClick={() => setShowDeleteModal(true)}
-                    className={styles.deleteButton}
-                >
-                    Delete
-                </button>
+                <DeleteModal
+                    title='Delete Shelf'
+                    description={`Are you sure you want to delete ${language}?`}
+                    confirm={() => removeSelf()}
+                />
             </header>
             <ul className={styles.ingredientsList}>{ingredientItems}</ul>
-            {showDeleteModal && (
-                <DeleteShelfModal
-                    cancel={() => setShowDeleteModal(false)}
-                    confirm={removeSelf}
-                />
-            )}
             {showCreateModal && (
                 <CreateIngredientModal
                     create={addIngredient}

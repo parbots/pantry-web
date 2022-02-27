@@ -1,33 +1,47 @@
 import styles from './DeleteModal.module.css';
 
+import * as AlertDialog from '@radix-ui/react-alert-dialog';
+
 type DeleteModalProps = {
-    cancel: Function;
+    title: string;
+    description: string;
     confirm: Function;
 };
 
-const DeleteModal = ({ cancel, confirm }: DeleteModalProps) => {
+const DeleteModal = ({ title, description, confirm }: DeleteModalProps) => {
     return (
-        <div className={styles.overlay}>
-            <section className={styles.modal}>
-                <header className={styles.header}>
-                    <h3>Are you sure?</h3>
-                </header>
-                <section className={styles.buttonSection}>
-                    <button
-                        onClick={() => cancel()}
-                        className={styles.cancelButton}
-                    >
-                        Cancel
-                    </button>
-                    <button
-                        onClick={() => confirm()}
-                        className={styles.deleteButton}
-                    >
-                        Delete
-                    </button>
-                </section>
-            </section>
-        </div>
+        <AlertDialog.Root>
+            <AlertDialog.Trigger className={styles.deleteButton}>
+                Delete
+            </AlertDialog.Trigger>
+            <AlertDialog.Portal>
+                <AlertDialog.Overlay className={styles.overlay} />
+                <AlertDialog.Content className={styles.content}>
+                    <header className={styles.header}>
+                        <AlertDialog.Title>{title}</AlertDialog.Title>
+                    </header>
+
+                    <section className={styles.description}>
+                        <AlertDialog.Description>
+                            {description}
+                        </AlertDialog.Description>
+                    </section>
+
+                    <section className={styles.actionSection}>
+                        <AlertDialog.Cancel className={styles.cancelButton}>
+                            Cancel
+                        </AlertDialog.Cancel>
+
+                        <AlertDialog.Action
+                            onClick={() => confirm()}
+                            className={styles.deleteButton}
+                        >
+                            Delete
+                        </AlertDialog.Action>
+                    </section>
+                </AlertDialog.Content>
+            </AlertDialog.Portal>
+        </AlertDialog.Root>
     );
 };
 
