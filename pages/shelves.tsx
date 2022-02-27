@@ -16,12 +16,6 @@ const ShelvesPage: NextPage = () => {
     const [shelves, createShelf, removeShelf, addIngredient, removeIngredient] =
         useShelves([]);
 
-    const [showCreateShelfModal, setShowCreateShelfModal] = useState(false);
-
-    const handleCreateShelf = () => {
-        createShelf('Test Shelf', []);
-    };
-
     const shelfListItems = shelves.map((shelf) => {
         return (
             <ShelfList
@@ -46,21 +40,14 @@ const ShelvesPage: NextPage = () => {
             <Panel>
                 <header className={styles.header}>
                     <h1 className={styles.title}>Shelves</h1>
-                    <button
-                        onClick={() => setShowCreateShelfModal(true)}
-                        className={styles.createButton}
-                    >
-                        Create Shelf
-                    </button>
+                    <CreateShelfModal
+                        confirm={(language: string) =>
+                            createShelf(language, [])
+                        }
+                    />
                 </header>
                 <ul className={styles.shelvesList}>{shelfListItems}</ul>
             </Panel>
-            {showCreateShelfModal && (
-                <CreateShelfModal
-                    createShelf={createShelf}
-                    cancel={() => setShowCreateShelfModal(false)}
-                />
-            )}
         </AppLayout>
     );
 };

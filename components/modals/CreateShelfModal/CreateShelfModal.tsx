@@ -1,14 +1,17 @@
 import styles from './CreateShelfModal.module.css';
-import { useState, useRef, useEffect, ChangeEvent, FormEvent } from 'react';
+
+import { useState, useRef, ChangeEvent, FormEvent } from 'react';
+
+import * as AlertDialog from '@radix-ui/react-alert-dialog';
 
 type CreateShelfModalProps = {
-    createShelf: Function;
-    cancel: Function;
+    confirm: Function;
 };
 
-const CreateShelfModal = ({ createShelf, cancel }: CreateShelfModalProps) => {
+const CreateShelfModal = ({ confirm }: CreateShelfModalProps) => {
     const [languageInput, setLanguageInput] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
+    const createRef = useRef<HTMLButtonElement>(null);
 
     const handleLanguageChange = (event: ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
@@ -16,55 +19,73 @@ const CreateShelfModal = ({ createShelf, cancel }: CreateShelfModalProps) => {
         setLanguageInput(event.target.value);
     };
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
 
-        createShelf(languageInput, []);
-        cancel();
+        focusCreate();
     };
 
     const handleCreate = () => {
-        createShelf(languageInput, []);
-        cancel();
+        confirm(languageInput);
+        setLanguageInput('');
     };
 
-    useEffect(() => {
+    const focusCreate = () => {
+        if (createRef.current) {
+            createRef.current.focus();
+        }
+    };
+
+    const focusInput = (event: Event) => {
+        event.preventDefault();
+
         if (inputRef.current) {
             inputRef.current.focus();
         }
-    }, []);
+    };
 
     return (
-        <div className={styles.overlay}>
-            <section className={styles.modal}>
-                <header className={styles.header}>
-                    <h3 className={styles.title}>Create New Shelf</h3>
-                </header>
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type='text'
-                        value={languageInput}
-                        onChange={handleLanguageChange}
-                        ref={inputRef}
-                        className={styles.languageInput}
-                    />
-                </form>
-                <section className={styles.buttonSection}>
-                    <button
-                        onClick={() => cancel()}
-                        className={styles.cancelButton}
-                    >
-                        Cancel
-                    </button>
-                    <button
-                        onClick={() => handleCreate()}
-                        className={styles.createButton}
-                    >
-                        Create
-                    </button>
-                </section>
-            </section>
-        </div>
+        <AlertDialog.Root>
+            <AlertDialog.Trigger className={styles.createButton}>
+                Create Shelf
+            </AlertDialog.Trigger>
+
+            <AlertDialog.Portal>
+                <AlertDialog.Overlay className={styles.overlay} />
+
+                <AlertDialog.Content
+                    className={styles.content}
+                    onOpenAutoFocus={focusInput}
+                >
+                    <header className={styles.header}>
+                        <AlertDialog.Title>Create Shelf</AlertDialog.Title>
+                    </header>
+
+                    <form onSubmit={handleSubmit} className={styles.form}>
+                        <input
+                            type='text'
+                            value={languageInput}
+                            onChange={handleLanguageChange}
+                            ref={inputRef}
+                            className={styles.languageInput}
+                        />
+                    </form>
+
+                    <section className={styles.actionSection}>
+                        <AlertDialog.Cancel className={styles.cancelButton}>
+                            Cancel
+                        </AlertDialog.Cancel>
+                        <AlertDialog.Action
+                            ref={createRef}
+                            onClick={() => handleCreate()}
+                            className={styles.createButton}
+                        >
+                            Create
+                        </AlertDialog.Action>
+                    </section>
+                </AlertDialog.Content>
+            </AlertDialog.Portal>
+        </AlertDialog.Root>
     );
 };
 
