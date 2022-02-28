@@ -3,6 +3,9 @@ import styles from './CreateIngredientModal.module.css';
 import { useState, ChangeEvent, useRef, FormEvent } from 'react';
 
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+
+const languages = ['javascript', 'html', 'css'];
 
 type CreateIngredientModalProps = {
     create: Function;
@@ -11,7 +14,7 @@ type CreateIngredientModalProps = {
 const CreateIngredientModal = ({ create }: CreateIngredientModalProps) => {
     const [nameInput, setNameInput] = useState('');
     const [descriptionInput, setDescriptionInput] = useState('');
-    const [languageInput, setLanguageInput] = useState('');
+    const [languageInput, setLanguageInput] = useState('Select language');
     const [snippetInput, setSnippetInput] = useState('');
 
     const nameInputRef = useRef<HTMLInputElement>(null);
@@ -105,13 +108,39 @@ const CreateIngredientModal = ({ create }: CreateIngredientModalProps) => {
                             />
                         </section>
                         <section className={styles.formRight}>
-                            <input
+                            {/* <input
                                 type='text'
                                 placeholder='Language'
                                 value={languageInput}
                                 onChange={handleLanguageChange}
                                 className={styles.languageInput}
-                            />
+                            /> */}
+                            <DropdownMenu.Root>
+                                <DropdownMenu.Trigger
+                                    className={styles.dropdownTrigger}
+                                >
+                                    {languageInput}
+                                </DropdownMenu.Trigger>
+
+                                <DropdownMenu.Content
+                                    className={styles.dropdown}
+                                >
+                                    {languages.map((language) => {
+                                        return (
+                                            <DropdownMenu.Item
+                                                key={language}
+                                                onClick={() =>
+                                                    setLanguageInput(language)
+                                                }
+                                                className={styles.dropdownItem}
+                                            >
+                                                {language}
+                                            </DropdownMenu.Item>
+                                        );
+                                    })}
+                                </DropdownMenu.Content>
+                            </DropdownMenu.Root>
+
                             <textarea
                                 placeholder='Code Snippet'
                                 value={snippetInput}

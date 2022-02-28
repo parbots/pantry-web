@@ -79,8 +79,28 @@
     gap: 1rem;
 }
 
-.languageInput {
+.dropdownTrigger {
     padding: 0.5rem;
+
+    cursor: pointer;
+}
+
+.dropdown {
+    overflow: hidden;
+
+    border-radius: 0.5rem;
+
+    background-color: var(--highlight);
+}
+
+.dropdownItem {
+    padding: 0.5rem;
+
+    cursor: pointer;
+}
+
+.dropdownItem:hover {
+    background-color: gray;
 }
 
 .snippetInput {
