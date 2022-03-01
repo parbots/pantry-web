@@ -7,11 +7,16 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
 const languages = ['javascript', 'html', 'css'];
 
-type CreateIngredientModalProps = {
-    create: Function;
+type Props = {
+    createIngredient: (
+        name: string,
+        description: string,
+        language: string,
+        snippet: string
+    ) => void;
 };
 
-const CreateIngredientModal = ({ create }: CreateIngredientModalProps) => {
+const CreateIngredientModal = ({ createIngredient }: Props) => {
     const [nameInput, setNameInput] = useState('');
     const [descriptionInput, setDescriptionInput] = useState('');
     const [languageInput, setLanguageInput] = useState('Select language');
@@ -30,12 +35,6 @@ const CreateIngredientModal = ({ create }: CreateIngredientModalProps) => {
         event.preventDefault();
 
         setDescriptionInput(event.target.value);
-    };
-
-    const handleLanguageChange = (event: ChangeEvent<HTMLInputElement>) => {
-        event.preventDefault();
-
-        setLanguageInput(event.target.value);
     };
 
     const handleSnippetChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -65,7 +64,12 @@ const CreateIngredientModal = ({ create }: CreateIngredientModalProps) => {
     };
 
     const handleCreate = () => {
-        create(nameInput, descriptionInput, languageInput, snippetInput);
+        createIngredient(
+            nameInput,
+            descriptionInput,
+            languageInput,
+            snippetInput
+        );
         setNameInput('');
         setDescriptionInput('');
         setLanguageInput('');
@@ -108,13 +112,6 @@ const CreateIngredientModal = ({ create }: CreateIngredientModalProps) => {
                             />
                         </section>
                         <section className={styles.formRight}>
-                            {/* <input
-                                type='text'
-                                placeholder='Language'
-                                value={languageInput}
-                                onChange={handleLanguageChange}
-                                className={styles.languageInput}
-                            /> */}
                             <DropdownMenu.Root>
                                 <DropdownMenu.Trigger
                                     className={styles.dropdownTrigger}

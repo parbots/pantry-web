@@ -10,7 +10,7 @@ type IngredientProps = {
     description: string;
     language: string;
     snippet: string;
-    removeSelf: Function;
+    removeSelf: () => void;
 };
 
 const IngredientItem = ({
@@ -27,7 +27,7 @@ const IngredientItem = ({
                 <DeleteModal
                     title='Delete Ingredient'
                     description={`Are you sure you want to delete ${name}?`}
-                    confirm={() => removeSelf()}
+                    deleteFunction={() => removeSelf()}
                 />
             </header>
             <p className={styles.description}>{description}</p>

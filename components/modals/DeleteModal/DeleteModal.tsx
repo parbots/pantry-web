@@ -5,10 +5,14 @@ import * as AlertDialog from '@radix-ui/react-alert-dialog';
 type DeleteModalProps = {
     title: string;
     description: string;
-    confirm: Function;
+    deleteFunction: () => void;
 };
 
-const DeleteModal = ({ title, description, confirm }: DeleteModalProps) => {
+const DeleteModal = ({
+    title,
+    description,
+    deleteFunction,
+}: DeleteModalProps) => {
     return (
         <AlertDialog.Root>
             <AlertDialog.Trigger className={styles.deleteButton}>
@@ -33,7 +37,7 @@ const DeleteModal = ({ title, description, confirm }: DeleteModalProps) => {
                         </AlertDialog.Cancel>
 
                         <AlertDialog.Action
-                            onClick={() => confirm()}
+                            onClick={() => deleteFunction()}
                             className={styles.deleteButton}
                         >
                             Delete

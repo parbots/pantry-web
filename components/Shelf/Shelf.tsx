@@ -6,12 +6,17 @@ import IngredientItem from 'components/Ingredient';
 import CreateIngredientModal from 'components/modals/CreateIngredientModal';
 import DeleteModal from 'components/modals/DeleteModal';
 
-type ShelfListProps = {
+type Props = {
     name: string;
-    removeSelf: Function;
+    removeSelf: () => void;
     ingredients: Ingredient[];
-    addIngredient: Function;
-    removeIngredient: Function;
+    addIngredient: (
+        name: string,
+        description: string,
+        language: string,
+        snippet: string
+    ) => void;
+    removeIngredient: (ingredientToRemove: Ingredient) => void;
 };
 
 const ShelfList = ({
@@ -20,7 +25,7 @@ const ShelfList = ({
     ingredients,
     addIngredient,
     removeIngredient,
-}: ShelfListProps) => {
+}: Props) => {
     const ingredientItems = ingredients.map((ingredient) => {
         return (
             <IngredientItem
@@ -38,11 +43,11 @@ const ShelfList = ({
         <section className={styles.shelf}>
             <header className={styles.header}>
                 <h2 className={styles.title}>{name}</h2>
-                <CreateIngredientModal create={addIngredient} />
+                <CreateIngredientModal createIngredient={addIngredient} />
                 <DeleteModal
                     title='Delete Shelf'
                     description={`Are you sure you want to delete ${name}?`}
-                    confirm={() => removeSelf()}
+                    deleteFunction={removeSelf}
                 />
             </header>
             <ul className={styles.ingredientsList}>{ingredientItems}</ul>

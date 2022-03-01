@@ -5,10 +5,10 @@ import { useState, useRef, ChangeEvent, FormEvent } from 'react';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 
 type CreateShelfModalProps = {
-    confirm: Function;
+    createShelf: (name: string) => void;
 };
 
-const CreateShelfModal = ({ confirm }: CreateShelfModalProps) => {
+const CreateShelfModal = ({ createShelf }: CreateShelfModalProps) => {
     const [languageInput, setLanguageInput] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
     const createRef = useRef<HTMLButtonElement>(null);
@@ -26,7 +26,7 @@ const CreateShelfModal = ({ confirm }: CreateShelfModalProps) => {
     };
 
     const handleCreate = () => {
-        confirm(languageInput);
+        createShelf(languageInput);
         setLanguageInput('');
     };
 

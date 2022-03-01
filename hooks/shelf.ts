@@ -4,49 +4,50 @@ import type { Ingredient, Shelf } from 'types/pantry';
 
 import { v4 as uuid } from 'uuid';
 
-type ShelfHook = (
-    initialShelves: Shelf[]
-) => [
-    shelves: Shelf[],
-    createShelf: (name: string, ingredients: Ingredient[]) => Shelf,
-    removeShelf: (shelfToRemove: Shelf) => Shelf,
-    createIngredient: (
-        name: string,
-        description: string,
-        language: string,
-        snippet: string,
+type ShelfHook = (initialShelves: Shelf[]) => {
+    all: Shelf[];
+    add: (shelfToAdd: string | Shelf) => Shelf;
+    remove: (shelfToRemove: Shelf) => Shelf;
+    addIngredient: (
+        ingredientToAdd:
+            | [
+                  newName: string,
+                  newDescription: string,
+                  selectedLanguage: string,
+                  newSnippet: string
+              ]
+            | Ingredient,
         targetShelf: Shelf
-    ) => Ingredient,
+    ) => Ingredient;
     removeIngredient: (
         ingredientToRemove: Ingredient,
         targetShelf: Shelf
-    ) => Ingredient
-];
+    ) => Ingredient;
+};
 
 export const useShelves: ShelfHook = (initialShelves) => {
     const [shelves, setShelves] = useState<Shelf[]>(initialShelves);
 
-    const createShelf = (
-        newName: string,
-        newIngredients: Ingredient[]
-    ): Shelf => {
+    const createShelf = (newName: string): Shelf => {
         return {
             id: uuid(),
             name: newName,
-            ingredients: newIngredients,
+            ingredients: [],
         };
     };
 
-    const addShelf = (shelfToAdd: Shelf): Shelf => {
-        setShelves([...shelves, shelfToAdd]);
-        return shelfToAdd;
-    };
+    const addShelf = (shelfToAdd: string | Shelf): Shelf => {
+        if (typeof shelfToAdd === 'string') {
+            const createdShelf = createShelf(shelfToAdd);
 
-    const addNewShelf = (
-        newName: string,
-        newIngredients: Ingredient[]
-    ): Shelf => {
-        return addShelf(createShelf(newName, newIngredients));
+            setShelves([...shelves, createdShelf]);
+
+            return createdShelf;
+        }
+
+        setShelves([...shelves, shelfToAdd]);
+
+        return shelfToAdd;
     };
 
     const removeShelf = (shelfToRemove: Shelf): Shelf => {
@@ -55,6 +56,7 @@ export const useShelves: ShelfHook = (initialShelves) => {
                 return shelf !== shelfToRemove;
             })
         );
+
         return shelfToRemove;
     };
 
@@ -74,9 +76,35 @@ export const useShelves: ShelfHook = (initialShelves) => {
     };
 
     const addIngredient = (
-        ingredientToAdd: Ingredient,
+        ingredientToAdd:
+            | [
+                  newName: string,
+                  newDescription: string,
+                  selectedLanguage: string,
+                  newSnippet: string
+              ]
+            | Ingredient,
         targetShelf: Shelf
     ): Ingredient => {
+        if (Array.isArray(ingredientToAdd)) {
+            const createdIngredient = createIngredient(...ingredientToAdd);
+
+            setShelves(
+                shelves.map((shelf) => {
+                    if (shelf === targetShelf) {
+                        shelf.ingredients = [
+                            ...shelf.ingredients,
+                            createdIngredient,
+                        ];
+                    }
+
+                    return shelf;
+                })
+            );
+
+            return createdIngredient;
+        }
+
         setShelves(
             shelves.map((shelf) => {
                 if (shelf === targetShelf) {
@@ -88,24 +116,6 @@ export const useShelves: ShelfHook = (initialShelves) => {
         );
 
         return ingredientToAdd;
-    };
-
-    const addNewIngredient = (
-        newName: string,
-        newDescription: string,
-        selectedLanguage: string,
-        newSnippet: string,
-        targetShelf: Shelf
-    ): Ingredient => {
-        return addIngredient(
-            createIngredient(
-                newName,
-                newDescription,
-                selectedLanguage,
-                newSnippet
-            ),
-            targetShelf
-        );
     };
 
     const removeIngredient = (
@@ -129,11 +139,11 @@ export const useShelves: ShelfHook = (initialShelves) => {
         return ingredientToRemove;
     };
 
-    return [
-        shelves,
-        addNewShelf,
-        removeShelf,
-        addNewIngredient,
-        removeIngredient,
-    ];
+    return {
+        all: shelves,
+        add: addShelf,
+        remove: removeShelf,
+        addIngredient: addIngredient,
+        removeIngredient: removeIngredient,
+    };
 };
