@@ -2,10 +2,10 @@ import styles from './CreateIngredientModal.module.css';
 
 import { useState, ChangeEvent, useRef, FormEvent } from 'react';
 
+import { supportedLanguages } from 'types/pantry';
+
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-
-const languages = ['javascript', 'html', 'css'];
 
 type Props = {
     createIngredient: (
@@ -31,7 +31,9 @@ const CreateIngredientModal = ({ createIngredient }: Props) => {
         setNameInput(event.target.value);
     };
 
-    const handleDescriptionChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleDescriptionChange = (
+        event: ChangeEvent<HTMLTextAreaElement>
+    ) => {
         event.preventDefault();
 
         setDescriptionInput(event.target.value);
@@ -72,7 +74,7 @@ const CreateIngredientModal = ({ createIngredient }: Props) => {
         );
         setNameInput('');
         setDescriptionInput('');
-        setLanguageInput('');
+        setLanguageInput('Select language');
         setSnippetInput('');
     };
 
@@ -103,9 +105,8 @@ const CreateIngredientModal = ({ createIngredient }: Props) => {
                                 onChange={handleNameChange}
                                 className={styles.nameInput}
                             />
-                            <input
-                                type='text'
-                                placeholder='Description'
+                            <textarea
+                                placeholder='Description...'
                                 value={descriptionInput}
                                 onChange={handleDescriptionChange}
                                 className={styles.descriptionInput}
@@ -122,7 +123,7 @@ const CreateIngredientModal = ({ createIngredient }: Props) => {
                                 <DropdownMenu.Content
                                     className={styles.dropdown}
                                 >
-                                    {languages.map((language) => {
+                                    {supportedLanguages.map((language) => {
                                         return (
                                             <DropdownMenu.Item
                                                 key={language}
@@ -139,7 +140,7 @@ const CreateIngredientModal = ({ createIngredient }: Props) => {
                             </DropdownMenu.Root>
 
                             <textarea
-                                placeholder='Code Snippet'
+                                placeholder='Paste code snippet here...'
                                 value={snippetInput}
                                 onChange={handleSnippetChange}
                                 className={styles.snippetInput}
