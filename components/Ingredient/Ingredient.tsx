@@ -31,7 +31,6 @@ const IngredientItem = ({
                 />
             </header>
             <p className={styles.description}>{description}</p>
-            <p className={styles.language}>{language}</p>
             <SyntaxHighlighter
                 language={language}
                 style={dracula}
