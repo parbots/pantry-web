@@ -1,4 +1,4 @@
-import styles from 'styles/ShelvesPage.module.css';
+import styles from 'styles/PantryPage.module.css';
 
 import type { NextPage } from 'next';
 

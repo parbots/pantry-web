@@ -3,7 +3,7 @@ import styles from './Ingredient.module.css';
 import DeleteModal from 'components/modals/DeleteModal';
 
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { dracula } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { nord } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
 type IngredientProps = {
     name: string;
@@ -33,7 +33,7 @@ const IngredientItem = ({
             <p className={styles.description}>{description}</p>
             <SyntaxHighlighter
                 language={language}
-                style={dracula}
+                style={nord}
                 wrapLines
                 className={styles.snippet}
             >
